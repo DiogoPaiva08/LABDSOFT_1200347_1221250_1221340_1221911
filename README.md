@@ -1,29 +1,79 @@
-# LABDSOFT 2026/27 — Community Resilience and Everyday Services Platform
+# CampusFlow
 
-> A digital product that helps a community **anticipate, manage, or recover from disruptions** affecting everyday life, combining trustworthy information, coordinated action, responsible AI, and a secure, observable, continuously delivered architecture.
+> **LABDSOFT 2026/27 — Community Resilience and Everyday Services Platform**
+>
+> A community-driven, event-oriented platform that helps a university campus manage and optimize the flow of people, providing real-time estimated waiting times for high-traffic places and smart alerts when your usual spots get unexpectedly crowded.
 
-| | |
-|---|---|
-| **Team** | _<team name>_ |
-| **Target community** | _<e.g. ISEP campus, neighbourhood X, ...>_ |
-| **Problem** | _<specific problem being addressed>_ |
-| **Primary users** | _<primary user group>_ |
-| **Measurable outcome** | _<metric the product aims to improve>_ |
+|                        |                                                                                                                                                                                                      |
+|------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Target community**   | University campus — students, teaching staff and non-teaching staff                                                                                                                                  |
+| **Problem**            | Time lost and frustration caused by unpredictable queues and overcrowded spaces (canteens, bars, libraries, academic services, vending areas), due to the lack of centralized, real-time information |
+| **Primary users**      | Students (primary), teaching and non-teaching staff                                                                                                                                                  |
+| **Measurable outcome** | _<e.g. reduction in average waiting time for users who follow a suggested alternative>_                                                                                                              |
+
+---
+
+## Team Members
+
+| Student Number | Name               |  
+|----------------|--------------------|
+| _<1200347>_    | _<Beatriz Silva>_  | 
+| _<1221250>_    | _<Carlos Pereira>_ | 
+| _<1221911>_    | _<Bruno Lourenço>_ |
+| _<1221340>_    | _<Diogo Paiva>_    |
 
 ---
 
 ## Table of Contents
 
-1. [Sprint Plan](#1-sprint-plan)
-2. [Phase 1 — Team Setup](#2-phase-1--team-setup)
-   - [Git Repository](#21-git-repository)
-   - [Issue Tracking](#22-issue-tracking)
-   - [Methodology](#23-methodology)
-   - [Definition of Ready](#24-definition-of-ready-dor)
-   - [Definition of Done](#25-definition-of-done-dod)
-   - [Team Roles](#26-team-roles)
-3. [Sprint 1 Deliverables](#3-sprint-1-deliverables)
-4. [Repository Structure](#4-repository-structure)
+<!-- TOC -->
+* [CampusFlow](#campusflow)
+  * [Team Members](#team-members)
+  * [Table of Contents](#table-of-contents)
+  * [Product Overview](#product-overview)
+    * [The Problem](#the-problem)
+    * [The Solution](#the-solution)
+    * [Architecture](#architecture)
+  * [1. Sprint Plan](#1-sprint-plan)
+  * [2. Phase 1 — Team Setup](#2-phase-1--team-setup)
+    * [Checklist](#checklist)
+    * [2.1 Git Repository](#21-git-repository)
+    * [2.2 Issue Tracking](#22-issue-tracking)
+    * [2.3 Methodology](#23-methodology)
+    * [2.4 Definition of Ready (DoR)](#24-definition-of-ready-dor)
+    * [2.5 Definition of Done (DoD)](#25-definition-of-done-dod)
+    * [2.6 Team Roles](#26-team-roles)
+  * [3. Sprint 1 Deliverables](#3-sprint-1-deliverables)
+    * [Problem & Opportunity Report](#problem--opportunity-report)
+    * [Market & Competitor Analysis](#market--competitor-analysis)
+    * [User Research](#user-research)
+    * [Product Vision](#product-vision)
+    * [Product Backlog](#product-backlog)
+    * [Responsible AI Opportunity Assessment](#responsible-ai-opportunity-assessment)
+    * [Technical Design](#technical-design)
+    * [Architecture Decision Records](#architecture-decision-records)
+    * [Security & Privacy Assessment](#security--privacy-assessment)
+    * [Walking Skeleton](#walking-skeleton)
+  * [4. Repository Structure](#4-repository-structure)
+  * [Code of Conduct](#code-of-conduct)
+<!-- TOC -->
+
+---
+
+## Product Overview
+
+### The Problem
+
+In university communities, students, teaching staff and employees lose time every day to unpredictable queues and overcrowded spaces. High-traffic places such as canteens, bars, libraries, academic services and vending areas experience large swings in occupancy, and there is no centralized, transparent, real-time information about waiting times.
+
+### The Solution
+
+*CampusFlow* provides an *interactive campus map* (with building navigation and per-floor plans) where users can:
+
+- *Check estimated waiting times* for each point of interest (POI)
+- *Submit quick check-ins (~3 seconds)* reporting the current queue status, optionally with a free-text note or photo
+- *Favourite their usual places* and only get *notifications and faster alternatives* when an anomalous peak is detected there, avoiding information overload
+- *Computer vision* to automatically detect whether a queue is crowded
 
 ---
 
@@ -172,38 +222,33 @@ An item is only considered done when:
 
 ## 3. Sprint 1 Deliverables
 
-| # | Deliverable | Status | Document |
-|---|---|---|---|
-| 1 | Problem & Opportunity Report | ⬜ | `docs/product/problem-opportunity.md` |
-| 2 | Market & Competitor Analysis | ⬜ | `docs/product/competitor-analysis.md` |
-| 3 | User Research | ⬜ | `docs/product/user-research.md` |
-| 4 | Product Vision (personas, value proposition, journeys, MVP) | ⬜ | `docs/product/vision.md` |
-| 5 | Product Backlog | ⬜ | _<Jira link>_ |
-| 6 | Responsible AI Opportunity Assessment | ⬜ | `docs/ai/ai-assessment.md` |
-| 7 | Technical Design (C4, data model, APIs, async, deployment) | ⬜ | `docs/architecture/` |
-| 8 | Architecture Decision Records | ⬜ | `docs/adr/` |
-| 9 | Security & Privacy Assessment | ⬜ | `docs/security/threat-model.md` |
-| 10 | Walking Skeleton (repo, build, test, container) | ⬜ | `services/`, `client/` |
+### Problem & Opportunity Report
+
+### Market & Competitor Analysis
+
+### User Research
+
+### Product Vision
+
+### Product Backlog
+
+### Responsible AI Opportunity Assessment
+
+### Technical Design
+
+### Architecture Decision Records
+
+### Security & Privacy Assessment
+
+### Walking Skeleton
 
 ---
 
 ## 4. Repository Structure
 
-```
-.
-├── docs/
-│   ├── product/        # problem, competitors, research, vision
-│   ├── architecture/   # C4 views, data model, deployment
-│   ├── adr/            # Architecture Decision Records
-│   ├── ai/             # AI evaluation and risks
-│   ├── security/       # threat model, privacy
-│   └── process/        # DoR, DoD, meeting notes, investor feedback
-├── services/           # backend components (≥ 2 independently deployable)
-├── client/             # web/mobile application
-├── infra/              # docker-compose, k8s, configs
-├── .github/            # CI/CD workflows, PR/issue templates
-└── README.md
-```
+Language FrontEnd and BackEnd
+
+TO DO
 
 ---
 
