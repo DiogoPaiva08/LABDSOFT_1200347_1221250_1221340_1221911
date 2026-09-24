@@ -1,0 +1,140 @@
+
+# ============================================================
+#  LABDSOFT — .gitignore
+#  Covers: Java (Maven/Gradle), Node/JS clients, Python (AI),
+#  Docker, IDEs, OS files and secrets
+# ============================================================
+
+# ---------- Secrets & environment (NEVER commit) ----------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.jks
+*.keystore
+secrets/
+**/application-local.yml
+**/application-local.properties
+**/application-secrets.*
+
+# ---------- Java / Spring Boot ----------
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
+replay_pid*
+
+# Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+release.properties
+dependency-reduced-pom.xml
+
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# ---------- Node / Frontend ----------
+node_modules/
+dist/
+out/
+.next/
+.nuxt/
+.expo/
+.angular/
+.svelte-kit/
+.vite/
+.turbo/
+.cache/
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+
+# ---------- Python (AI / scripts) ----------
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+*.egg-info/
+
+# ---------- Tests & coverage ----------
+coverage/
+.nyc_output/
+jacoco*.exec
+test-results/
+playwright-report/
+cypress/videos/
+cypress/screenshots/
+htmlcov/
+.coverage
+
+# ---------- Logs & runtime ----------
+logs/
+*.log
+*.pid
+tmp/
+temp/
+
+# ---------- Local data (use synthetic/seed data in repo instead) ----------
+data/local/
+*.db
+*.sqlite
+*.sqlite3
+docker-volumes/
+**/postgres-data/
+**/mongo-data/
+
+# ---------- Docker / Infra ----------
+docker-compose.override.yml
+.terraform/
+*.tfstate
+*.tfstate.*
+.kube/
+
+# ---------- IDEs ----------
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+.classpath
+.project
+.settings/
+.factorypath
+bin/
+.sts4-cache/
+nbproject/
+*.swp
+*.swo
+*~
+
+# ---------- OS ----------
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
