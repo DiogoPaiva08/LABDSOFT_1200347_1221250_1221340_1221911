@@ -33,7 +33,6 @@
   * [Product Overview](#product-overview)
     * [The Problem](#the-problem)
     * [The Solution](#the-solution)
-    * [Architecture](#architecture)
   * [1. Sprint Plan](#1-sprint-plan)
   * [2. Phase 1 — Team Setup](#2-phase-1--team-setup)
     * [Checklist](#checklist)
@@ -44,16 +43,6 @@
     * [2.5 Definition of Done (DoD)](#25-definition-of-done-dod)
     * [2.6 Team Roles](#26-team-roles)
   * [3. Sprint 1 Deliverables](#3-sprint-1-deliverables)
-    * [Problem & Opportunity Report](#problem--opportunity-report)
-    * [Market & Competitor Analysis](#market--competitor-analysis)
-    * [User Research](#user-research)
-    * [Product Vision](#product-vision)
-    * [Product Backlog](#product-backlog)
-    * [Responsible AI Opportunity Assessment](#responsible-ai-opportunity-assessment)
-    * [Technical Design](#technical-design)
-    * [Architecture Decision Records](#architecture-decision-records)
-    * [Security & Privacy Assessment](#security--privacy-assessment)
-    * [Walking Skeleton](#walking-skeleton)
   * [4. Repository Structure](#4-repository-structure)
   * [Code of Conduct](#code-of-conduct)
 <!-- TOC -->
@@ -100,8 +89,8 @@ In university communities, students, teaching staff and employees lose time ever
 
 ### 2.1 Git Repository
 
-- **Platform:** _<GitHub / Bitbucket / GitLab>_
-- **URL:** _<repository link>_
+- **Platform:** GitHub
+- **URL:** _<https://github.com/DiogoPaiva08/LABDSOFT_1200347_1221250_1221340_1221911>_
 
 **Branching strategy** (proposed: simplified GitHub Flow)
 
@@ -115,19 +104,21 @@ In university communities, students, teaching staff and employees lose time ever
 
 **Rules**
 
-- `main` protection: no direct pushes, PR required, CI pipeline must pass.
+- `main` is protected: no direct pushes, PR required, CI pipeline must pass before merge.
 - Every PR requires **at least 1 approval** from another team member (code review).
-- Commits follow [Conventional Commits](https://www.conventionalcommits.org/) and reference the issue:
+- Commits follow conventional commits and reference the GitHub issue they close or relate to:
   ```
-  feat(reports): add duplicate detection endpoint [LAB-42]
-  fix(auth): handle expired token [LAB-57]
+  feat: add duplicate detection endpoint #22
+  fix: handle expired token #21
+  docs: add initial README with project overview and sprint plan #1
   ```
-- PR template including: description, related issue, how to test, DoD checklist.
+- PRs should stay small and scoped to one issue where possible — easier to review,
+  easier to trace as individual contribution evidence.
 
 ### 2.2 Issue Tracking
 
-- **Tool:** _<Jira / GitHub Projects>_
-- **Board URL:** _<link>_
+- **Tool:** GitHub Issues (this repository) — see the `Issues` tab.
+- Issue types in use: setup tasks (Phase 1, #1–#5), Sprint 1 deliverables (#6–#15).
 
 Used to:
 
@@ -222,25 +213,22 @@ An item is only considered done when:
 
 ## 3. Sprint 1 Deliverables
 
-### Problem & Opportunity Report
+Each deliverable below is its own document under `docs/`, tracked by its own GitHub issue.
+Open a PR per document, referencing its issue (see [`CONTRIBUTING.md`](CONTRIBUTING.md) for
+branch naming and PR rules).
 
-### Market & Competitor Analysis
-
-### User Research
-
-### Product Vision
-
-### Product Backlog
-
-### Responsible AI Opportunity Assessment
-
-### Technical Design
-
-### Architecture Decision Records
-
-### Security & Privacy Assessment
-
-### Walking Skeleton
+| # | Deliverable | Doc | Issue |
+|---|---|---|---|
+| 1 | Problem & Opportunity Report | [`docs/01-problem-opportunity.md`](docs/01-problem-opportunity.md) | [#6](../../issues/6) |
+| 2 | Market & Competitor Analysis | [`docs/02-market-competitor-analysis.md`](docs/02-market-competitor-analysis.md) | [#7](../../issues/7) |
+| 3 | User Research | [`docs/03-user-research.md`](docs/03-user-research.md) | [#8](../../issues/8) |
+| 4 | Product Vision | [`docs/04-product-vision.md`](docs/04-product-vision.md) | [#9](../../issues/9) |
+| 5 | Product Backlog | [`docs/05-product-backlog.md`](docs/05-product-backlog.md) | [#10](../../issues/10) |
+| 6 | Responsible AI Opportunity Assessment | [`docs/06-responsible-ai.md`](docs/06-responsible-ai.md) | [#11](../../issues/11) |
+| 7 | Technical Design | [`docs/07-technical-design.md`](docs/07-technical-design.md) | [#12](../../issues/12) |
+| 8 | Architecture Decision Records | [`docs/adr/`](docs/adr/README.md) | [#13](../../issues/13) |
+| 9 | Security & Privacy Assessment | [`docs/08-security-privacy.md`](docs/08-security-privacy.md) | [#14](../../issues/14) |
+| 10 | Walking Skeleton | [`docs/09-walking-skeleton.md`](docs/09-walking-skeleton.md) | [#15](../../issues/15) |
 
 ---
 
