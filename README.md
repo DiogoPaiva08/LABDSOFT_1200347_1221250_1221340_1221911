@@ -243,3 +243,5 @@ TO DO
 ## Code of Conduct
 
 We don't use real personal data when synthetic data is sufficient, we never fabricate user-research evidence, we review all AI-generated content before treating it as authoritative, and we acknowledge third-party code, datasets, and tools.
+
+Teste do PR
