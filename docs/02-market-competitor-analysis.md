@@ -78,12 +78,36 @@ one to address honestly in front of the investors.
 | **UX** | Clean and effortless, but strictly read-only: users consume, never contribute or correct |
 | **Privacy & trust** | Strong posture — passive Bluetooth/Wi-Fi density scanning with the explicit claim that individuals are not tracked. However it is **non-consensual by design** for passers-by, who cannot opt out of being counted, and trust rests entirely on the vendor's assurances rather than on anything the community can inspect |
 
-**Implication for CampusFlow:** Waitz proves the demand but leaves two real gaps.
-First, it needs institutional budget and installed hardware — CampusFlow needs neither,
-so it can cover POIs nobody would ever buy a sensor for. Second, sensors cannot
-express *why* a queue is slow; people can. This is the strongest argument for a
-community-sourced approach, and it should be made explicitly rather than pretending no
-competitor exists.
+**Implication for CampusFlow:** Waitz proves the demand, and the team should say so
+openly rather than present the problem as unaddressed. Three gaps remain, and they define
+what is actually differentiating:
+
+1. **Sensors measure presence, not waiting.** A counter with eight people queueing is
+   invisible to device-density sensing if the room is otherwise empty. Queue state is a
+   different measurement, not a more precise version of the same one.
+2. **Sensors cannot express *why*.** "Only one till open", "card machine down", "event in
+   the atrium" is the information that explains an anomaly and that lets a user decide.
+   Only people can supply it.
+3. **Coverage is bought, not grown.** Instrumented coverage stops where the budget
+   stopped. Community reporting extends to any POI users care about — vending areas,
+   individual service desks — that nobody would ever instrument.
+
+The claim CampusFlow **cannot** make is that it avoids hardware altogether: the Product
+Vision's camera-based journey carries the same dependency (see the
+[matrix discussion](#feature-comparison-matrix)). The honest positioning is a **hybrid**:
+instrumented estimates where cameras exist, community reports everywhere else, with the
+two reconciled into one status and a visible confidence level.
+
+**Also note the second front.** Occuspace does not only sell a student app — it sells
+occupancy analytics to facilities and space-planning teams, which is precisely the
+"Campus Service Manager" persona and operational dashboard defined in
+[`04-product-vision.md`](04-product-vision.md). CampusFlow competes with Waitz on **both**
+sides of the market, and on the analytics side the incumbent's advantage is calibrated,
+continuous sensor data against CampusFlow's sparser, self-selected reports. The
+counter-argument is that CampusFlow's data carries labelled *causes* and covers
+non-instrumented spaces — useful for reacting to abnormal demand, which is what that
+persona is described as needing, rather than for long-run space-utilization planning,
+which it is not.
 
 ### C. Institutional channels (Portal ISEP, Moodle, website notices)
 
@@ -168,18 +192,43 @@ freshness, confidence indicators and honest handling of stale data.
 | Covers non-commercial POIs (services, vending) | ○ | ◐ | ○ | ◐ | ● | ● | ● |
 | Free-text / photo context | ○ | ○ | ○ | ○ | ● | ● | ● |
 | Push alerts only on *anomalies* at favourites | ○ | ○ | ◐ | ○ | ○ | ○ | ● |
-| No hardware or operator adoption required | ● | ○ | ● | ○ | ● | ● | ● |
+| No hardware or operator adoption required | ● | ○ | ● | ○ | ● | ● | ◐ |
 | Works without tracking the user continuously | ○ | ● | ● | ◐ | ● | ● | ● |
+| Low privacy footprint for bystanders | ◐ | ● | ● | ◐ | ◐ | ● | ○ |
 | Aggregates and persists for trend analysis | ● | ● | ○ | ● | ○ | ○ | ● |
+| Operator/facilities analytics view | ○ | ● | ◐ | ● | ○ | ○ | ● |
 | Zero effort from the user | ● | ● | ● | ○ | ◐ | ○ | ○ |
 
 ● full · ◐ partial · ○ absent
 
-The matrix makes the trade-off explicit: **CampusFlow's one structural disadvantage is
-that it asks users for effort.** Every competitor that matches it on granularity either
-buys hardware (Waitz) or requires operator adoption (queue systems). That is the bet the
-product is making, and the cold-start risk already logged in
+The matrix exposes **two structural disadvantages**, both of which the team should state
+plainly rather than discover during the investor review.
+
+**First, CampusFlow asks users for effort.** Google Maps and Waitz ask for none. That is
+the bet the product is making, and the cold-start risk already logged in
 [`01-problem-opportunity.md`](01-problem-opportunity.md) is its direct consequence.
+
+**Second, CampusFlow does not avoid the hardware dependency it criticizes.** The Product
+Vision ([`04-product-vision.md`](04-product-vision.md), [#9](../../issues/9)) commits to
+Computer Vision over *"cameras installed at strategic campus locations"* as an MVP
+capability and a principal user journey. Where those cameras are required, CampusFlow
+carries the **same capital-expenditure and institutional-approval dependency as Waitz** —
+so the "no infrastructure" advantage holds only for the community-sourced half of the
+product, which is why that row is scored ◐ and not ●.
+
+The privacy row follows from the same decision and is the uncomfortable one.
+Occuspace counts anonymous Bluetooth/Wi-Fi device density and can credibly claim it never
+identifies anyone. A camera pointed at a queue **captures identifiable faces of people
+who never consented and are not users of the product**. Declining to run facial
+recognition — which the Product Vision correctly commits to — limits what is *inferred*,
+but does not change what is *captured*. On bystander privacy the sensor-based competitor
+is therefore **ahead of CampusFlow**, not behind it. This is the single most consequential
+finding of this analysis for [`08-security-privacy.md`](08-security-privacy.md)
+([#14](../../issues/14)): camera-based queue estimation on a campus is video surveillance
+of identifiable individuals and should be treated as requiring a data-protection impact
+assessment, explicit signage and a documented minimization strategy (on-device or
+in-memory inference, immediate frame discard, no image persistence), not as an
+implementation detail.
 
 ---
 
@@ -229,13 +278,32 @@ Four defensible differentiators, in order of strength:
    and is where the AI opportunity sits — reconciling, de-duplicating and summarizing
    multiple concurrent reports into one trustworthy statement with a visible confidence
    level (feeds [#11](../../issues/11)).
-4. **No infrastructure, no operator dependency.** Deployable by the community itself,
-   with zero capital cost and no process change at any service point — the reason this
-   is achievable as a student MVP where Waitz is not.
+4. **Hybrid coverage: instrumented where it pays, community-sourced everywhere else.**
+   This replaces an earlier, weaker claim that CampusFlow needs no infrastructure at all —
+   the camera-based journey in [`04-product-vision.md`](04-product-vision.md) means it
+   does, wherever cameras are used. The defensible version is that CampusFlow is the only
+   alternative that **degrades gracefully across coverage**: a POI with a camera gets a
+   continuous estimate, a POI without one still gets community reports, and both are
+   presented through the same status model with an explicit source and confidence. Waitz
+   shows nothing at all where no sensor was installed; CampusFlow shows something, clearly
+   labelled as weaker. This also makes the MVP achievable — the community half works with
+   zero capital cost, so camera coverage can start at one or two locations instead of
+   gating the product.
 
 **Where CampusFlow should not try to compete:** breadth of coverage beyond one campus,
-effortless passive sensing, and transactional flows (ordering, payment, holding a place
-in a queue). Those are the incumbents' home ground.
+effortless passive sensing, transactional flows (ordering, payment, holding a place in a
+queue), and long-run space-utilization analytics against calibrated sensor data. Those
+are the incumbents' home ground.
+
+**A differentiator that cuts both ways.** Cameras buy accuracy at the cost of the
+strongest privacy position available in this market. Occuspace can tell a university
+"we never see anyone"; CampusFlow cannot. If user research ([#8](../../issues/8)) or the
+privacy assessment ([#14](../../issues/14)) finds that camera-based estimation is not
+acceptable to the community or not defensible under GDPR for the MVP's scope, the product
+does **not** lose its core value — differentiators 1 to 3 are all community-sourced and
+survive the removal of cameras entirely. The team should know in advance that this is a
+severable scope decision, and it is a strong candidate for the decision revised in
+response to investor feedback that the brief requires (§5.7).
 
 ---
 
@@ -248,9 +316,9 @@ in a queue). Those are the incumbents' home ground.
 > offers a faster alternative.
 >
 > Unlike passive crowd data, it reports **waiting**, not just presence, and carries the
-> human context that explains it. Unlike sensor platforms, it needs no hardware and no
-> institutional budget. Unlike a group chat, every report helps everyone and builds a
-> picture that lasts.
+> human context that explains it. Unlike sensor platforms, it still works where nothing
+> was instrumented — and says so, instead of showing nothing. Unlike a group chat, every
+> report helps everyone and builds a picture that lasts.
 
 **The competitive bet in one sentence:** that a community will contribute a few seconds
 of effort in exchange for information that no amount of passive sensing can produce —
@@ -269,6 +337,10 @@ on.
 | Institutional channels are complementors → ingest official notices as verified external data | Technical Design [#12](../../issues/12), external integration (§6.5) |
 | Anomaly detection, not a live feed, is the differentiator → it must be a core MVP capability, not a later nice-to-have | Vision [#9](../../issues/9), Backlog [#10](../../issues/10) |
 | Community-sourced data invites manipulation, and photos carry third-party faces → trust and privacy controls are product features, not hardening | Security & Privacy [#14](../../issues/14) |
+| **Camera-based estimation puts CampusFlow *behind* the sensor-based competitor on bystander privacy** → needs a DPIA, signage, and a no-image-persistence design, or the scope should be reconsidered | Security & Privacy [#14](../../issues/14), ADRs [#13](../../issues/13) |
+| Cameras reintroduce the hardware and institutional-approval dependency → positioning must be hybrid coverage, not "no infrastructure" | Vision [#9](../../issues/9), Technical Design [#12](../../issues/12) |
+| Differentiators 1–3 survive without cameras → camera scope is severable, and a strong candidate for the investor-driven decision revision (§5.7) | Vision [#9](../../issues/9), ADRs [#13](../../issues/13) |
+| Occuspace also sells facilities analytics → the Campus Service Manager dashboard faces an incumbent with better-calibrated data; compete on labelled causes and non-instrumented coverage | Vision [#9](../../issues/9), Backlog [#10](../../issues/10) |
 
 ---
 
@@ -277,7 +349,13 @@ on.
 - **Desk research only.** No competitor was trialled on the ISEP campus, no vendor was
   contacted, and no pricing was obtained. Vendor-published accuracy figures (such as
   Occuspace's ~90% claim) are **vendor claims**, reported as such and not independently
-  verified.
+  verified. Occuspace pricing is not public, so the claim that instrumented coverage is a
+  capital-expenditure decision is a reasonable inference from its hardware-plus-SaaS model,
+  not a costed comparison.
+- **The CampusFlow column reflects *intended* scope, not a built product.** It is scored
+  against [`04-product-vision.md`](04-product-vision.md) as written for Sprint 1. If the
+  camera-based journey is dropped, deferred, or expanded, the hardware-dependency,
+  bystander-privacy and analytics rows all change, and this matrix must be revised with it.
 - **No confirmed Waitz/Occuspace deployment in Portugal** was found; the adoption
   evidence is from US institutions. Whether a Portuguese institution would buy such a
   system is unknown and affects how threatening this competitor really is here.
